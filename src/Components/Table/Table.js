@@ -3,7 +3,6 @@ import './Table.scss';
 
 const Table = props => {
     let cls = {...props.arrowDirection}
-    console.log(props.data)
     Object.keys(cls).forEach(el=>{
         if(cls[el]===null){
             cls[el]=''

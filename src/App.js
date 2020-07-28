@@ -114,7 +114,6 @@ export default class App extends Component {
               item['lastName'].toLowerCase().includes(searchString.toLowerCase()) ||
               item['email'].toLowerCase().includes(searchString.toLowerCase()) ||
               item['phone'].toLowerCase().includes(searchString.toLowerCase()) 
-        
     })
       
     
@@ -127,7 +126,6 @@ export default class App extends Component {
   const dataUrl = data==='small'? smallDataUrl : bigDataUrl
   this.fetchData(dataUrl)
   this.setState({dataUrl, showStartMenu: false})
-  console.log(dataUrl)
   }
   render(){
     if(this.state.showStartMenu){

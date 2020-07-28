@@ -1,0 +1,15 @@
+.button{
+    width: 100px;
+    height: 30px;
+    background-color: grey;
+    border: none;
+    margin-left: 20px;
+    transition-property: background-color;
+    transition-duration: .3s;
+    &:hover{
+        background-color: lightslategray;
+    }
+    &:disabled{
+        background-color: peru;
+    }
+}

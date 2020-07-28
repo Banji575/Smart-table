@@ -1,0 +1,21 @@
+.addContact{
+    border:1px solid #efedef;
+    margin-bottom: 10px;
+    form{
+        display: flex;
+        width: 90%;
+        margin: 10px auto;
+    }
+    h1{
+        color: #efedef;
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .buttonBlock{
+        padding: 5px;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+

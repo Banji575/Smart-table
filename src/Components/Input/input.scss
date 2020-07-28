@@ -1,0 +1,29 @@
+.input{
+    .invalid{
+        color: red;
+    }
+    display: flex;
+    flex-direction: column;
+
+    input{
+        display: block;
+        width: 200px;
+        margin-left: 20px;
+    }
+    label{
+        text-align: left;
+        margin-left: 20px;
+        color: #efedef;
+    }
+    span{
+        font-size: 14px;
+        width: 160px;
+        margin-left: 20px;
+        &.valid{
+            color:#6ead3a;
+        }
+        &.invalid{
+            color: red;
+        }
+    }
+}

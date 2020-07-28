@@ -3,6 +3,7 @@ import './Table.scss';
 
 const Table = props => {
     let cls = {...props.arrowDirection}
+    console.log(props.data)
     Object.keys(cls).forEach(el=>{
         if(cls[el]===null){
             cls[el]=''
@@ -44,8 +45,11 @@ const Table = props => {
                 </th>
             </tr>
         </thead>
+        
         <tbody>
-            { props.data.map((item,i)=>{
+            {!props.data // Если поиск не дал результатов
+            ? <tr><td colSpan = '5'>Not contacts</td></tr>
+            :   props.data.map((item,i)=>{
                 const key = i + Math.random()
                 return(
                     <tr key={key}

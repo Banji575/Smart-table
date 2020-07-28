@@ -38,37 +38,20 @@ export default class App extends Component {
   }
 
   fetchData = async(URL)=>{
-  try {
+    try {
     const res = await fetch(URL)
     const data = await res.json()
     this.setState({
       loading:false,
       data
-    })
-  } catch (e) {
+      })
+        } catch (e) {
     console.log(e)
     this.setState({
       loading:false,
-    })
-  }
-  }
- /*  async componentDidMount(){
-    console.log(this.state.dataUrl)
-    const URL = this.state.dataUrl
-    try {
-      const res = await fetch(URL)
-      const data = await res.json()
-      this.setState({
-        loading:false,
-        data
-      })
-    } catch (e) {
-      console.log(e)
-      this.setState({
-        loading:false,
       })
     }
-  } */
+  }
 
   addContactHundler = (contact) =>{
     const data = this.state.data.concat()
@@ -79,11 +62,13 @@ export default class App extends Component {
   onFilterHundler = (_, headName) =>{
     let filterData = this.getSearchData()
     let sortDirection = this.state.sortDirection
+
     sortDirection[headName]
     ? filterData = strSort(filterData, headName)
     : filterData = revSort(filterData, headName)
+
     Object.keys(sortDirection).forEach(name=>{
-     return name===headName? sortDirection[name]=!sortDirection[name]  :sortDirection[name]=null
+      return name===headName? sortDirection[name]=!sortDirection[name]  :sortDirection[name]=null
     })
     this.setState({filterData, sortDirection})
   }
@@ -105,42 +90,45 @@ export default class App extends Component {
     })
   }
   
-onPageChange = ({selected})=>{
-  this.setState({currentPage:selected})
-}
+  onPageChange = ({selected})=>{
+    this.setState({currentPage:selected})
+  }
 
-onSearchInput = (evt) =>{
-this.setState({searchString:evt.target.value})
-}
-onSerachButtonHundler = () =>{
-  this.setState({detailData:null})
-this.getSearchData()
-}
+  onSearchInput = (evt) =>{
+  this.setState({searchString:evt.target.value})
+  }
 
-getSearchData = () =>{
-  const {searchString, data} = this.state
-if(!searchString || searchString ===''){
-  this.setState({filterData:null})
-  return data
-}else{
-  let result = data.filter(item=>{
-    return item['firstName'].toLowerCase().includes(searchString.toLowerCase()) ||
-            item['lastName'].toLowerCase().includes(searchString.toLowerCase()) ||
-            item['email'].toLowerCase().includes(searchString.toLowerCase()) 
+  onSerachButtonHundler = () =>{
+    this.setState({detailData:null})
+  this.getSearchData()
+  }
+
+  getSearchData = () =>{
+    const {searchString, data} = this.state
+    if(!searchString || searchString ===''){
+      this.setState({filterData:null})
+      return data
+    }else{
+      let result = data.filter(item=>{
+      return item['firstName'].toLowerCase().includes(searchString.toLowerCase()) ||
+              item['lastName'].toLowerCase().includes(searchString.toLowerCase()) ||
+              item['email'].toLowerCase().includes(searchString.toLowerCase()) ||
+              item['phone'].toLowerCase().includes(searchString.toLowerCase()) 
+        
+    })
       
-  })
-  
-    this.setState({currentPage:0, filterData:result})
-    return result
-}
-}
+    
+      this.setState({currentPage:0, filterData:result})
+      return result
+    }
+  }
 
-onChangeSizeData = (data) =>{
-const dataUrl = data==='small'? smallDataUrl : bigDataUrl
-this.fetchData(dataUrl)
-this.setState({dataUrl, showStartMenu: false})
-console.log(dataUrl)
-}
+  onChangeSizeData = (data) =>{
+  const dataUrl = data==='small'? smallDataUrl : bigDataUrl
+  this.fetchData(dataUrl)
+  this.setState({dataUrl, showStartMenu: false})
+  console.log(dataUrl)
+  }
   render(){
     if(this.state.showStartMenu){
       return <StartMenu
@@ -167,31 +155,30 @@ console.log(dataUrl)
                 :(<div className = 'optionMenu'><Button clickHundler = {this.onToggleForm}>Добавить контакт</Button></div>)
               }
                 <Table
-                data = {currentData}
-                onFilterHundler = {this.onFilterHundler}
-                onDetailHundler = {this.onDetailHundler}
-                arrowDirection = {this.state.sortDirection}
+                  data = {currentData}
+                  onFilterHundler = {this.onFilterHundler}
+                  onDetailHundler = {this.onDetailHundler}
+                  arrowDirection = {this.state.sortDirection}
                 />{
                   this.state.data.length > pageSize ?
-                <ReactPaginate
-                previousLabel={'previous'}
-                nextLabel={'next'}
-                breakLabel={'...'}
-                breakClassName={'break-me'}
-                pageCount={pageCount}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={this.onPageChange}
-                containerClassName={'pagination'}
-                subContainerClassName={'pages pagination'}
-                activeClassName={'active'}
-                forcePage={this.state.currentPage}
-          />
+                  <ReactPaginate
+                    previousLabel={'previous'}
+                    nextLabel={'next'}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.onPageChange}
+                    containerClassName={'pagination'}
+                    subContainerClassName={'pages pagination'}
+                    activeClassName={'active'}
+                    forcePage={this.state.currentPage}
+                  />
                   : null
-                }
-                
+                }       
               </React.Fragment> 
-          }
+           }
           {
           this.state.detailData
           ? <DataList detailData = {this.state.detailData}/>
@@ -199,10 +186,7 @@ console.log(dataUrl)
           }
         </Layout>
       );
-    }
-
-    
+    }  
   }
-  
 }
 

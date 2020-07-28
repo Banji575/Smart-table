@@ -9,7 +9,6 @@ function validateEmail(email) {
 }
 
 export default class AddContact extends Component {
-
     state = {
         newContact:{
             id:null,
@@ -104,7 +103,6 @@ export default class AddContact extends Component {
         if(validation.email){
             isValid = validateEmail(value)
         }
-
         return isValid;
     }
 
@@ -112,15 +110,18 @@ export default class AddContact extends Component {
         const formControls = {...this.state.formControls}
         const control = {...formControls[controlName]}
         const newContact = {...this.state.newContact}
+
         control.value = evt.target.value
         control.touched = true
         control.valid = this.validateControl(control.value, control.validation)
         formControls[controlName] = control
         newContact[controlName] = control.value
+
         let isFormValid = true
         Object.keys(formControls).forEach(controlName=>{
            isFormValid = formControls[controlName].valid && isFormValid
         })
+
         this.setState({formControls, isFormValid, newContact})
     }
 
@@ -129,15 +130,15 @@ export default class AddContact extends Component {
             const control = this.state.formControls[controlName]
             return(
                 <Input
-                key = {control.type + i}
-                type = {control.type}
-                value = {control.value}
-                touched = {control.touched}
-                label = {control.label}
-                onChange = {(evt)=>this.onChangeHundler(evt, controlName)}
-                errorMessage = {control.errorMessage}
-                valid = {control.valid}
-                shouldValidate = {!!control.validation}
+                    key = {control.type + i}
+                    type = {control.type}
+                    value = {control.value}
+                    touched = {control.touched}
+                    label = {control.label}
+                    onChange = {(evt)=>this.onChangeHundler(evt, controlName)}
+                    errorMessage = {control.errorMessage}
+                    valid = {control.valid}
+                    shouldValidate = {!!control.validation}
                 />
             )
         })
@@ -151,9 +152,9 @@ export default class AddContact extends Component {
                 </form>
                 <div className = 'buttonBlock'>
                 <Button
-                disabled = {!this.state.isFormValid}
-                type = 'submit'
-                clickHundler = {()=>this.props.onAddContact(this.state.newContact)}
+                    disabled = {!this.state.isFormValid}
+                    type = 'submit'
+                    clickHundler = {()=>this.props.onAddContact(this.state.newContact)}
                 >Добавить</Button>
                 <Button clickHundler = {this.props.onToggleForm}>Закрыть</Button>
                 </div>

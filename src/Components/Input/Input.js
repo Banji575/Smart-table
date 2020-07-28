@@ -14,23 +14,17 @@ const Input = props => {
         <div className = 'input'>
             <label htmlFor = {htmlFor}>{props.label}</label>
             <input
-            type = {inputType}
-            id = {htmlFor}
-            value = {props.value}
-            onChange = {props.onChange}
-            onBlur = {props.onBlur || null}
+                type = {inputType}
+                id = {htmlFor}
+                value = {props.value}
+                onChange = {props.onChange}
+                onBlur = {props.onBlur || null}
             />
             {
                props.shouldValidate
                ? <span className={cls}>{props.errorMessage || 'Введите верное значение'}</span>
                : null
             }
-            
-            {/* {
-                !isInvalid(props)
-                ?<span>{props.errorMessage || 'Введите верное значение'}</span>
-                :null
-            } */}
         </div>
     )
 }

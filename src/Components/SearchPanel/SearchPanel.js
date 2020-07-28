@@ -7,11 +7,11 @@ const SearchPaner = props => {
     return(
         <div className = 'searchPanel'>
             <Input 
-            value = {props.value}
-            onChange = {props.onChange}
+                value = {props.value}
+                onChange = {props.onChange}
             />
             <Button
-            clickHundler = {props.onClick}
+                clickHundler = {props.onClick}
             >Найти</Button>
         </div>
     )

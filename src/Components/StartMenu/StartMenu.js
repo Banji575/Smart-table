@@ -9,7 +9,7 @@ const StartMenu = props =>{
             clickHundler = {()=>props.onClickHundler('small')}
         >Маленькие данные</Button>
         <Button
-         clickHundler = {()=>props.onClickHundler('big')}
+            clickHundler = {()=>props.onClickHundler('big')}
         >Большие данные</Button>
     </div>
     )
